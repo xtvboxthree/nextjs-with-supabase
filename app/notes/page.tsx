@@ -5,5 +5,11 @@ export default async function Page() {
   const { data: notes } = await supabase.from('notes').select()
 
   //return <pre>{JSON.stringify(notes, null, 2)}</pre>
-  return <ul><li>{notes.title}</li></ul>
+  return (
+    <div>
+      {notes.map(note => (
+        <p key={note.id}>{note.title}</p>
+      ))}
+    </div>
+  )
 }
